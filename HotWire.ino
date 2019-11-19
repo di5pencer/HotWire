@@ -44,7 +44,6 @@ void setup(){
      rVOLTS();            //measure pack voltage
      rVOLTS();            //Once more for clarity
 
-
      display.begin(SSD1306_SWITCHCAPVCC, 0x3c); // generate hi power
      display.clearDisplay();
 
@@ -103,7 +102,6 @@ void setup(){
         cDetect();
         bSCREEN();
         delay(2000);
-
 }
 
 
@@ -129,10 +127,8 @@ pSCREEN(); //display stuff on screen
     //Serial.println(pwm); //debug
 }
 
-
 // reads and calculates voltage
 void rVOLTS (){
-
          while (sample_count < NUM_SAMPLES){
              sum += analogRead(vSENSE);
              sample_count++;
@@ -145,9 +141,7 @@ void rVOLTS (){
     //Serial.print("v");
     sample_count =0;
     sum =0;
-
 }
-
 
 // detects low voltage
 void voltDetect(){
@@ -162,7 +156,6 @@ void voltDetect(){
   else
   {lowbatt = 0;}
 
-
   if (lowbatt ==1)
   {
   digitalWrite(13,HIGH);
@@ -170,15 +163,12 @@ void voltDetect(){
     }
   else{
     digitalWrite(13,LOW);
-    digitalWrite(5,LOW);
+    digitalWrite(5,LOW); //buzzer off
     }
 }
 
-
-
 void pSCREEN(){
  // display stuff
-
  display.clearDisplay();
  display.setTextColor(WHITE, BLACK);
  display.setTextSize(1);
@@ -205,7 +195,6 @@ display.print("s");
         }
             else{}
 
-
  display.setCursor(42,35);
  display.setTextSize(2);
  display.print(pwmPercent,1);
@@ -218,9 +207,7 @@ display.print("s");
         } /// black bars in gauge
 
 display.display(); //display everything.
-
 }
-
 
 /// boot screen and cell detect
 void bSCREEN(){
@@ -275,7 +262,4 @@ void cDetect(){
 
       if(cvoltage >= 13 && cvoltage<= 17)
       {cells=4;}
-
-
-
 }
